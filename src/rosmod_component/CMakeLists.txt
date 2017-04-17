@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(rosmod_actor)
+project(rosmod_component)
 
 ## Check C++11 / C++0x
 include(CheckCXXCompilerFlag)
@@ -13,10 +13,7 @@ else()
     message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif()
 
-
-ADD_DEFINITIONS(-DNAMESPACE=rosmod)
-find_package(catkin REQUIRED COMPONENTS rosmod rosmod_component std_msgs)
-ADD_DEFINITIONS(-DUSE_ROSMOD)
+find_package(catkin REQUIRED COMPONENTS rosmod std_msgs)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -84,8 +81,10 @@ ADD_DEFINITIONS(-DUSE_ROSMOD)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
+  INCLUDE_DIRS include
+  LIBRARIES rosmod_component
 #  CATKIN_DEPENDS roscpp std_msgs
-  CATKIN_DEPENDS rosmod rosmod_component rosmod_jsoncpp message_runtime
+  CATKIN_DEPENDS message_runtime rosmod_jsoncpp
 #  DEPENDS system_lib
 )
 
@@ -164,14 +163,19 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+include_directories(include ../rosmod_jsoncpp/include ${catkin_INCLUDE_DIRS})
 
-# make rosmod_actor executable
-add_executable(rosmod_actor
-	       src/rosmod_actor/main.cpp)
-target_link_libraries(rosmod_actor rosmod_component rosmod_jsoncpp dl ${catkin_LIBRARIES})
-# install rosmod_actor executable
-install(TARGETS rosmod_actor
+# make rosmod_component library
+add_library(rosmod_component
+  src/rosmod_component/Component.cpp)
+target_link_libraries(rosmod_component rosmod_jsoncpp ${catkin_LIBRARIES})
+# install rosmod component
+install(TARGETS rosmod_component
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
 
+# install required headers
+install(DIRECTORY include/
+  DESTINATION ${CATKIN_GLOBAL_INCLUDE_DESTINATION}
+  FILES_MATCHING PATTERN "*.hpp")

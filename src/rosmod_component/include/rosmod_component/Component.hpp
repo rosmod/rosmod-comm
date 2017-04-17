@@ -11,8 +11,8 @@
 #include <iostream>
 #include <string>
 #include <std_msgs/Bool.h>
-#include "rosmod_actor/Logger.hpp"
-#include "json/json.h"
+#include "rosmod_component/Logger.hpp"
+#include "rosmod_jsoncpp/json.h"
 
 #include "rosmod/rosmod_ros.h"
 #include "rosmod/rosmod_callback_queue.h"

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>rosmod_actor</name>
+  <name>rosmod_component</name>
   <version>0.0.0</version>
-  <description>The rosmod actor package</description>
+  <description>The rosmod component library</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
   <!-- Example:  -->
@@ -41,11 +41,9 @@
   <!--   <test_depend>gtest</test_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>rosmod_jsoncpp</build_depend>
-  <build_depend>rosmod_component</build_depend>
   <build_depend>rosmod</build_depend>
   <build_depend>std_msgs</build_depend>
   <run_depend>rosmod_jsoncpp</run_depend>
-  <run_depend>rosmod_component</run_depend>
   <run_depend>rosmod</run_depend>
   <run_depend>std_msgs</run_depend>
 
