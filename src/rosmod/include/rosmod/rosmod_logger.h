@@ -94,6 +94,19 @@ public:
     }
   }
 
+  bool trace(const char * format, ...) {
+    if (logging_enabled_) {
+      va_list args;
+      va_start (args, format);
+      char log_entry[1024];
+      vsprintf (log_entry, format, args);
+      std::string log_entry_string(log_entry);
+      va_end (args);
+      log_content_ += log_entry_string + "\n";
+      flush();
+    }
+  }
+
   int size() {
     return log_content_.size();
   }

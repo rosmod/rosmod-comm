@@ -128,8 +128,6 @@ add_library(rosmod
   src/librosmod/rosmod_this_node.cpp
   )
 
-add_dependencies(rosmod roscpp_gencpp rosgraph_msgs_gencpp std_msgs_gencpp)
-
 target_link_libraries(rosmod
   ${catkin_LIBRARIES}
   ${Boost_LIBRARIES}
