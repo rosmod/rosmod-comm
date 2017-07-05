@@ -15,7 +15,7 @@ endif()
 
 
 ADD_DEFINITIONS(-DNAMESPACE=rosmod)
-find_package(catkin REQUIRED COMPONENTS rosmod rosmod_component std_msgs)
+find_package(catkin REQUIRED COMPONENTS rosmod rosmod_component rosmod_jsoncpp std_msgs)
 ADD_DEFINITIONS(-DUSE_ROSMOD)
 
 ## System dependencies are found with CMake's conventions
