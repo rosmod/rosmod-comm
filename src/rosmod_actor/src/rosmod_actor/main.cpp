@@ -11,8 +11,8 @@
 #include <cstdlib>        
 #include <signal.h>
 #include <boost/thread.hpp>
-#include "rosmod_component/Component.hpp"
-#include "rosmod_jsoncpp/json.h"
+#include "component.hpp"
+#include "json.h"
 #include "pthread.h"
 #include "sched.h"
 #include <iostream>

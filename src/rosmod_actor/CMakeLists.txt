@@ -15,7 +15,7 @@ endif()
 
 
 ADD_DEFINITIONS(-DNAMESPACE=rosmod)
-find_package(catkin REQUIRED COMPONENTS rosmod rosmod_component rosmod_jsoncpp std_msgs)
+find_package(catkin REQUIRED COMPONENTS std_msgs rosmod)
 ADD_DEFINITIONS(-DUSE_ROSMOD)
 
 ## System dependencies are found with CMake's conventions
@@ -98,6 +98,7 @@ catkin_package(
 # include_directories(include)
 include_directories(
   ${catkin_INCLUDE_DIRS}
+  include/rosmod_actor
 )
 
 ## Declare a cpp library
@@ -167,8 +168,10 @@ include_directories(
 
 # make rosmod_actor executable
 add_executable(rosmod_actor
-	       src/rosmod_actor/main.cpp)
-target_link_libraries(rosmod_actor rosmod_component rosmod_jsoncpp dl ${catkin_LIBRARIES})
+  src/rosmod_actor/jsoncpp.cpp
+  src/rosmod_actor/component.cpp
+  src/rosmod_actor/main.cpp)
+target_link_libraries(rosmod_actor dl ${catkin_LIBRARIES})
 # install rosmod_actor executable
 install(TARGETS rosmod_actor
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
