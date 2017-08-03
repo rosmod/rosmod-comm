@@ -4,12 +4,26 @@
 * ROSMOD introduces PFIFO and EDF-based scheduling schemes to the ROS callback queue.
 * ROSMOD also facilitates deadline monitoring i.e. deadline violation detection and logging for all callbacks.
 
+### Dependencies
+
+Install these dependencies according to their install instructions.
+
+* [ROS](http://www.ros.org)
+* [Catkin Tools](https://github.com/catkin/catkin_tools)
+
+### Configuration
+
 ```bash
-$ catkin_make -DCMAKE_INSTALL_PREFIX=<ROS_INSTALL_LOCATION> install
+# set rosmod to extend your ROS workspace
+$ catkin config --extend /opt/ros/kinetic
+# set the install location for rosmod (you can change this to be wherever you like)
+$ catkin config -i /opt/rosmod
+# configure rosmod to actually install
+$ catkin config --install
 ```
 
-e.g. 
+### Build and Install
 
 ```bash
-$ catkin_make -DCMAKE_INSTALL_PREFIX=/opt/ros/indigo install
+$ catkin build
 ```
