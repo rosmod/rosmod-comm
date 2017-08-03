@@ -5,7 +5,7 @@
  *  @brief   This file contains definitions for the base Component class
  */
 
-#include "component.hpp"
+#include "rosmod_actor/component.hpp"
 #include <unistd.h>
 
 // Constructor
