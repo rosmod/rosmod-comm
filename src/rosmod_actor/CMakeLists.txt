@@ -85,7 +85,7 @@ ADD_DEFINITIONS(-DUSE_ROSMOD)
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  CATKIN_DEPENDS roscpp std_msgs
-  CATKIN_DEPENDS rosmod rosmod_component rosmod_jsoncpp message_runtime
+  CATKIN_DEPENDS rosmod message_runtime
 #  DEPENDS system_lib
 )
 
