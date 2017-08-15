@@ -11,9 +11,20 @@ Install these dependencies according to their install instructions.
 * [ROS](http://www.ros.org)
 * [Catkin Tools](https://github.com/catkin/catkin_tools)
 
+### Downloading
+
+```bash
+# clone
+$ git clone https://github.com/rosmod/rosmod-comm
+# enter repository
+$ cd rosmod-comm
+```
+
 ### Configuration
 
 ```bash
+# chown /opt for the user
+$ sudo chown -R $USER /opt
 # set rosmod to extend your ROS workspace
 $ catkin config --extend /opt/ros/kinetic
 # set the install location for rosmod (you can change this to be wherever you like)
@@ -25,5 +36,8 @@ $ catkin config --install
 ### Build and Install
 
 ```bash
+# Remove any previous build files that may exist
+$ catkin clean -b --yes
+# build and install according to config
 $ catkin build
 ```
