@@ -29,12 +29,9 @@ Component::~Component() {
   init_timer.stop();
 }
 
-// Initialization
-void Component::init_timer_operation(const rosmod::TimerEvent& event) {}
-
 // Component Operation Queue Handler
 void Component::process_queue() {  
-  rosmod::NodeHandle nh;
+  ros::NodeHandle nh;
   while (nh.ok())
     this->comp_queue.callAvailable(ros::WallDuration(0.01));
 }
