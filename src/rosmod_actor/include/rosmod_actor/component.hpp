@@ -14,8 +14,8 @@
 #include "rosmod_actor/logger.hpp"
 #include "rosmod_actor/json.hpp"
 
-#include "rosmod/rosmod_ros.h"
-#include "rosmod/rosmod_callback_queue.h"
+#include "ros/ros.h"
+#include "ros/callback_queue.h"
 
 /**
  * @brief Component class
@@ -27,6 +27,11 @@ public:
    * @param[in] _config Component configuration parsed from deployment JSON
    */
   Component(Json::Value& _config);
+
+  /**
+   * @brief Component Destructor
+   */
+  virtual ~Component();
 
   /**
    * @brief Component startup function
@@ -41,22 +46,17 @@ public:
    * @param[in] event a oneshot timer event
    * @see startUp()
    */
-  virtual void init_timer_operation(const rosmod::TimerEvent& event);
+  virtual void init_timer_operation(const ros::TimerEvent& event) = 0;
 
   /**
    * @brief Component Message Queue handler
    */
   void process_queue();
 
-  /**
-   * @brief Component Destructor
-   */
-  virtual ~Component();
-
 protected:
   Json::Value              config;      /*!< Component Configuration */
-  rosmod::Timer            init_timer;  /*!< Initialization timer */
-  rosmod::CallbackQueue    comp_queue;  /*!< Component Message Queue */
+  ros::Timer               init_timer;  /*!< Initialization timer */
+  ros::CallbackQueue       comp_queue;  /*!< Component Message Queue */
   std::unique_ptr<Logger>  logger;      /*!< Component logger object */
   std::string              workingDir;  /*!< Working directory of the process */
 };

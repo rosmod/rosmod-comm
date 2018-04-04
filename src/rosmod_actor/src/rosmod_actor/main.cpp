@@ -18,7 +18,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "rosmod/rosmod_ros.h"
+#include "ros/ros.h"
 
 #include <signal.h>
 #include <ros/ros.h>
@@ -119,10 +119,10 @@ int main(int argc, char **argv)
   ROS_INFO_STREAM("Thread priority is " << params.sched_priority << std::endl);
 
   nodeName = root["Name"].asString();
-  rosmod::init(argc, argv, nodeName.c_str(), ros::init_options::NoSigintHandler);
+  ros::init(argc, argv, nodeName.c_str(), ros::init_options::NoSigintHandler);
   signal(SIGINT, rosmod_actor_SigInt_handler);
   // Create Node Handle
-  rosmod::NodeHandle n;
+  ros::NodeHandle n;
 
   ROS_INFO_STREAM(nodeName << " thread id = " << boost::this_thread::get_id());
     
